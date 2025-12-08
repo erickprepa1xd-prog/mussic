@@ -8,7 +8,7 @@ import java.util.*
 
 class TrackService {
 
-    fun create(req: TrackRequest): TrackResponse = dbQuery {
+    suspend fun create(req: TrackRequest): TrackResponse = dbQuery {
         val id = UUID.randomUUID()
 
         TracksTable.insert {

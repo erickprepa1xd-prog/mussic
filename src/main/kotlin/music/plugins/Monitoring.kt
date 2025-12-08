@@ -1,4 +1,4 @@
-package com
+package com.igra.music.plugins
 
 import io.ktor.resources.*
 import io.ktor.serialization.gson.*
@@ -14,19 +14,9 @@ import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
 import org.slf4j.event.*
 
-fun Application.configureSerialization() {
-    install(ContentNegotiation) {
-        gson {
-            }
-
-        json()
-    }
-    routing {
-        get("/json/gson") {
-                call.respond(mapOf("hello" to "world"))
-            }
-        get("/json/kotlinx-serialization") {
-            call.respond(mapOf("hello" to "world"))
-        }
+fun Application.configureMonitoring() {
+    install(CallLogging) {
+        level = Level.INFO
+        filter { call -> call.request.path().startsWith("/") }
     }
 }

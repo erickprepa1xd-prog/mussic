@@ -6,6 +6,7 @@ import com.igra.music.tables.ArtistasTable
 import org.jetbrains.exposed.sql.*
 import java.util.*
 import org.jetbrains.exposed.sql.deleteWhere
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 
 class ArtistaService {
@@ -47,8 +48,12 @@ class ArtistaService {
             }
     }
 
-  suspend fun delete(artistId: UUID): Boolean = dbQuery {
-    ArtistasTable.deleteWhere { ArtistasTable.id eq artistId } > 0
+
+suspend fun delete(artistId: UUID): Boolean = dbQuery {
+    ArtistasTable.deleteWhere {
+        ArtistasTable.id eq artistId
+    } > 0
 }
+
 
 }

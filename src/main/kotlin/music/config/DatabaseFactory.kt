@@ -16,10 +16,10 @@ object DatabaseFactory {
 
     private fun hikari(): HikariDataSource {
         val config = HikariConfig().apply {
-            jdbcUrl = "jdbc:postgresql://localhost:5432/tu_basededatos"
+            jdbcUrl = "jdbc:postgresql://localhost:5434/tu_basededatos"
             driverClassName = "org.postgresql.Driver"
             username = "postgres"
-            password = "1234"   // cambia si usas otra
+            password = "root"   // cambia si usas otra
 
             maximumPoolSize = 3
             isAutoCommit = false

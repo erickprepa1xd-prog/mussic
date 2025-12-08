@@ -8,7 +8,7 @@ import java.util.*
 
 class AlbumService {
 
-    fun create(req: AlbumRequest): AlbumResponse = dbQuery {
+    suspend fun create(req: AlbumRequest): AlbumResponse = dbQuery {
         val id = UUID.randomUUID()
 
         AlbumesTable.insert {
@@ -21,7 +21,7 @@ class AlbumService {
         AlbumResponse(id, req.title, req.releaseYear, req.artistId)
     }
 
-    fun getById(id: UUID): AlbumResponse? = dbQuery {
+    suspend fun getById(id: UUID): AlbumResponse? = dbQuery {
         AlbumesTable.select { AlbumesTable.id eq id }
             .map {
                 AlbumResponse(
